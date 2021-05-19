@@ -1,4 +1,6 @@
 from django.db import models
+from usuarios.models import ClienteMore
+from cursos.models import CursoModel
 
 # Create your models here.
 class PagoModel(models.Model):
