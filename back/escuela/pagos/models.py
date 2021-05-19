@@ -12,7 +12,8 @@ class PagoModel(models.Model):
     pagoIdPasarela = models.IntegerField(
         unique=True,
         null=False,
-        db_column='id_pasarela'
+        db_column='id_pasarela',
+        help_text='id de pago'
     )
 
     pagoPrecio = models.DecimalField(
@@ -20,8 +21,7 @@ class PagoModel(models.Model):
         decimal_places=2,
         db_column='monto',
         verbose_name='precio del curso',
-        help_text='precio del curso',
-        default=0.00
+        help_text='precio del curso'
     )
 
     # items (many to many)
@@ -31,25 +31,23 @@ class PagoModel(models.Model):
         null=False,
         db_column='estado',
         verbose_name='estado',
-        help_text='Estado del pago',
-        default='--'
+        help_text='estado del pago',
     )
 
     pagoDetalleEstado = models.CharField(
         max_length=10,
         null=False,
         db_column='detalle_estado',
-        help_text='Detalle del estado',
-        default='--'
+        help_text='detalle del estado del pago',
     )
 
-    """ clientes_id = models.ForeignKey(
-        to=ClienteModel,
+    clientes_id = models.ForeignKey(
+        to=ClienteMore,
         db_column='cliente_id',
-        on_delete=models.SET_NULL,
+        on_delete=models.CASCADE,
         verbose_name='id del cliente',
-        help_text='id del cliente'
-    ) """
+        help_text='id del cliente',
+    )
 
     class Meta:
         db_table = 'pagos'
@@ -63,16 +61,17 @@ class PagosCursoModel(models.Model):
         db_column='pago_id',
         on_delete=models.CASCADE,
         verbose_name='id de pago',
-        help_text='id de pago'
+        help_text='id de pago',
+
     )
 
-    """ cursoIdFK = models.ForeignKey(
+    cursoIdFK = models.ForeignKey(
         to=CursoModel,
         db_column='curso_id',
-        on_delete=models.SET_NULL,
+        on_delete=models.CASCADE,
         verbose_name='id de curso',
-        help_text='id de curso'
-    ) """
+        help_text='id de curso',
+    )
 
     class Meta:
         db_table = 'pagos_curso'
