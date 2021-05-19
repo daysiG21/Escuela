@@ -132,3 +132,6 @@ class ProfesorMore(models.Model):
     phone_number = models.CharField(validators=[phone_regex], max_length=12, blank=True)  # validators should be a list
     estado = models.CharField(max_length=1, choices=Estado.choices, blank=False, default=Estado.NONE)
 
+# TODO: - Cargar Roles basicos de usuarios en un fixture
+#       - Añadir asignacion de rol automatico al registrarse por cierta ruta
+#       - 
