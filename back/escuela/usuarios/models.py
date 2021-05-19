@@ -26,7 +26,6 @@ class Role(models.Model):
     def __str__(self):
         return self.get_id_display()
 
-
 class UserManager(BaseUserManager):
     """Define a model manager for User model with no username field."""
 
@@ -64,7 +63,6 @@ class UserManager(BaseUserManager):
         count = self.aggregate(count=Count('id'))['count']
         random_index = randint(0, count - 1)
         return self.all()[random_index]
-
 
 class User(AbstractUser):
     """ Usuario base
