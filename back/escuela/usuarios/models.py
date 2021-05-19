@@ -79,11 +79,10 @@ class User(AbstractUser):
 
     objects = UserManager()
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = []
+    REQUIRED_FIELDS = ['first_name', 'last_name']
 
-    # def __str__(self):
-    #     return self.get_full_name()
-
+    def get_username(self) -> str:
+        return self.email
 
 class ClienteManager(models.Manager):
     def get_queryset(self, *args, **kwargs):
