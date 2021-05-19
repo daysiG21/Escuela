@@ -1,5 +1,5 @@
 from django.db import models
-from escuela.usuarios.models import ProfesorMore
+from usuarios.models import ProfesorMore
 
 # Create your models here.
 class CategoriaModel(models.Model):
