@@ -1,7 +1,6 @@
 from django.db import models
 from usuarios.models import ProfesorMore
 
-# Create your models here.
 class CategoriaModel(models.Model):
   categoriaId = models.AutoField(
     primary_key=True, 
@@ -16,15 +15,14 @@ class CategoriaModel(models.Model):
     null=False,
     db_column='nombre',
     verbose_name='nombre', #mostrar en el panel administrativo
-    help_text='Nombre de la categoria' #ayuda para que sea visible en el panel administrativo
+    help_text='Nombre de la categoría' #ayuda para que sea visible en el panel administrativo
   )
 
   def __str__(self):    
     return self.categoriaNombre
+    
 
   class Meta:
-    #https://docs.djangoproject.com/en/3.2/ref/models/options/
-    #son atributos
     db_table ='categoria'
     verbose_name='categoria'
     verbose_name_plural='categorias'
@@ -44,12 +42,6 @@ class CursoModel(models.Model):
     verbose_name='tema',
     help_text='Tema del curso'
   )
-  descripionCurso=models.TextField(
-    db_column='descripcion',
-    max_length=1000,
-    help_text='Descripción del curso',
-    verbose_name='descripcion',
-  )
   cursoPrecio=models.DecimalField(
     max_digits=5,
     decimal_places=2,
@@ -57,9 +49,6 @@ class CursoModel(models.Model):
     verbose_name='Precio del curso',
     help_text='Precio del curso',
   )
-  
-  cursoImagen=models.TextField(db_column='imagen')
- 
   categoria = models.ForeignKey(
     to=CategoriaModel,
     db_column='categoria_id',
@@ -68,17 +57,33 @@ class CursoModel(models.Model):
     verbose_name='categoria',
     help_text='Categoria del curso'
   )
-
-  profesor = models.ForeignKey(
-      to=ProfesorMore,
-      db_column='profesor_id',
-      null = True,
-      on_delete = models.CASCADE,
-      related_name='profesorCursos',
-      verbose_name='profesor',
-      help_text='Profesor del curso'
+  profesorId = models.ForeignKey(
+    to=ProfesorMore,
+    db_column='profesor_id',
+    on_delete=models.SET_NULL,
+    related_name='profesorCursos', 
+    verbose_name='profesor',
+    help_text='Profesor',
+    null=True
+  )
+  cursoImagen=models.CharField(
+    db_column='imagen',
+    null=True,
+    verbose_name="Imagen",
+    help_text='Imágen',
+    max_length=1000,
+    )
+ 
+  descripionCurso=models.TextField(
+    db_column='descripcion',
+    max_length=1000,
+    help_text='Descripción del curso',
+    verbose_name='descripción',
   )
 
+  def __str__(self):    
+    return self.cursoTema
+  
   class Meta:
     db_table='curso'
     verbose_name='curso'
