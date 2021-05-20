@@ -58,7 +58,9 @@ class CursoModel(models.Model):
     help_text='Precio del curso',
   )
   
-  cursoImagen=models.TextField(db_column='imagen')
+  cursoImagen=models.ImageField(upload_to='cursos/imagenes',
+                                blank=True,
+                                null=True, db_column='imagen')
  
   categoria = models.ForeignKey(
     to=CategoriaModel,
