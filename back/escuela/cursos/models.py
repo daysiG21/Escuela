@@ -66,14 +66,12 @@ class CursoModel(models.Model):
     help_text='Profesor',
     null=True
   )
-  cursoImagen=models.CharField(
-    db_column='imagen',
-    null=True,
-    verbose_name="Imagen",
-    help_text='Imágen',
-    max_length=1000,
-    )
  
+  cursoImagen=models.ImageField(
+   upload_to='cursos/imagenes',
+      blank=True,
+      null=True, db_column='imagen')
+
   descripionCurso=models.TextField(
     db_column='descripcion',
     max_length=1000,
