@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     # AUTHENTICATION
     'rest_framework.authtoken',
     'djoser',
+    # CORS
+    'corsheaders',
     # My apps
     'usuarios',
     'pagos',
@@ -55,6 +57,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # CORSHEADERS MIDDLEWARE
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
 
 ROOT_URLCONF = 'escuela.urls'
@@ -127,6 +132,11 @@ DJOSER = {
         'user': 'usuarios.serializersUserCreateSerialzier',
     }
 }
+
+CORS_ALLOWED_ORIGINS = [
+    "http://127.0.0.1:3000",
+    "http://localhost:3000",
+]
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
