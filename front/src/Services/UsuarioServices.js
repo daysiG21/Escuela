@@ -2,6 +2,28 @@ import axios from 'axios'
 
 const URL ="https://601e0134be5f340017a1a122.mockapi.io/usuario"
 
+const DJANGO = "http://localhost:8000/auth/token/login/"
+
+const loginUsuario = async(data)=>{
+  let {email, password} = data;
+  console.log(data);
+  try{
+    let token = await axios.post(DJANGO, {'email': email, 'password': password}).then(
+      res => {
+        // console.log('response from django: ',res)
+        let { auth_token } = res.data;
+        // console.log('data', auth_token)
+        return auth_token
+      }
+    )
+    // console.log(token)
+    return token
+  }
+  catch (err){
+    console.log(err)
+    return err
+  }
+}
 
 const buscarUsuarioId = async(id)=>{
 
@@ -31,6 +53,7 @@ const registrarUsuario =async (objUsuario)=>{
 
 
 export {
+  loginUsuario,
   buscarUsuarioId,
   registrarUsuario
 }
