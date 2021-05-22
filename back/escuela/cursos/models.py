@@ -1,3 +1,4 @@
+from enum import unique
 from django.db import models
 from usuarios.models import ProfesorMore
 
@@ -24,6 +25,7 @@ class CategoriaModel(models.Model):
 
   class Meta:
     db_table ='categoria'
+    ordering =['categoriaNombre']
     verbose_name='categoria'
     verbose_name_plural='categorias'
 
@@ -40,14 +42,14 @@ class CursoModel(models.Model):
     db_column='tema',
     max_length=200,
     verbose_name='tema',
-    help_text='Tema del curso'
+    help_text='Ingrese el tema del curso'
   )
   cursoPrecio=models.DecimalField(
     max_digits=5,
     decimal_places=2,
     db_column='precio',
-    verbose_name='Precio del curso',
-    help_text='Precio del curso',
+    verbose_name='Precio',
+    help_text='Ingrese el precio del curso',
   )
   categoria = models.ForeignKey(
     to=CategoriaModel,
@@ -55,7 +57,7 @@ class CursoModel(models.Model):
     on_delete=models.CASCADE,
     related_name='categoriaCursos', 
     verbose_name='categoria',
-    help_text='Categoria del curso'
+    help_text='Seleccione la categoría'
   )
   profesorId = models.ForeignKey(
     to=ProfesorMore,
@@ -63,19 +65,21 @@ class CursoModel(models.Model):
     on_delete=models.SET_NULL,
     related_name='profesorCursos', 
     verbose_name='profesor',
-    help_text='Profesor',
+    help_text='Seleccione el profesor',
     null=True
   )
  
   cursoImagen=models.ImageField(
    upload_to='cursos/imagenes',
       blank=True,
-      null=True, db_column='imagen')
+      null=True,
+      db_column='imagen',
+      verbose_name="Imágen")
 
   descripionCurso=models.TextField(
     db_column='descripcion',
     max_length=1000,
-    help_text='Descripción del curso',
+    help_text='Ingrese la descripción del curso',
     verbose_name='descripción',
   )
 
