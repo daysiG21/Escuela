@@ -8,9 +8,8 @@ Esta es una proyecto web que contiene cursos pregrabados online. Los profesores 
     - djangorestframework-simplejwt==4.6.0
     - djoser==2.1.0
     - mercadopago==2.0.6
+    - django-cors-headers==3.7.0
     
-
-
     ![](capturas_proyecto/1.jpg)
     &nbsp;
     ![](capturas_proyecto/2.jpg)
@@ -18,6 +17,3 @@ Esta es una proyecto web que contiene cursos pregrabados online. Los profesores 
     ![](capturas_proyecto/3.jpg)
     &nbsp;
 - ***Frontend***: contiene las vistas del proyecto en react
-
-
-
