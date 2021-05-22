@@ -17,3 +17,9 @@ Esta es una proyecto web que contiene cursos pregrabados online. Los profesores 
     ![](capturas_proyecto/3.jpg)
     &nbsp;
 - ***Frontend***: contiene las vistas del proyecto en react
+
+## Integrantes:
+- _github.com/AmaruEscalante_
+- _github.com/daysiG21_
+- _github.com/juanca-dev_
+- _github.com/davidbgemin_
