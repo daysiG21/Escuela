@@ -126,10 +126,10 @@ AUTH_USER_MODEL = 'usuarios.User'
 
 DJOSER = {
     'LOGIN_FIELD': 'email',
-    'USER_CREATE_PASSWORD_RETYPE': True,
-    'SERIALIZER': {
-        'user_create': 'usuarios.serializers.UserCreateSerializer',
-        'user': 'usuarios.serializersUserCreateSerialzier',
+    'USER_CREATE_PASSWORD_RETYPE': False,
+    'SERIALIZERS': {
+        'user_create': 'usuarios.serializers.CustomUserCreateSerializer',
+        'user': 'usuarios.serializers.CustomUserCreateSerializer',
     }
 }
 
