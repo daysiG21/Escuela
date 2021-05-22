@@ -19,7 +19,7 @@ Esta es una proyecto web que contiene cursos pregrabados online. Los profesores 
 - ***Frontend***: contiene las vistas del proyecto en react
 
 ## Integrantes:
-- _github.com/AmaruEscalante_
-- _github.com/daysiG21_
-- _github.com/juanca-dev_
-- _github.com/davidbgemin_
+- https://github.com/AmaruEscalante
+- https://github.com/daysiG21
+- https://github.com/juanca-dev
+- https://github.com/davidbgemin
