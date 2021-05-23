@@ -23,7 +23,6 @@ class Role(models.Model):
     )
 
     id = models.PositiveSmallIntegerField(choices=ROLE_CHOICES, primary_key=True)
-    # titulo = models.CharField(max_length=20, blank=True)
 
     def __str__(self):
         return self.get_id_display()
@@ -107,7 +106,7 @@ class Cliente(User):
 
 
 class ClienteMore(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='cliente', null=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='cliente')
     premium = models.BooleanField(default=False, blank=False)
 
 
@@ -141,10 +140,6 @@ class ProfesorMore(models.Model):
                                  message="El número debe estar en el formato: '+51999999999' ")
     phone_number = models.CharField(validators=[phone_regex], max_length=12, blank=True)  # validators should be a list
     estado = models.CharField(max_length=1, choices=Estado.choices, blank=False, default=Estado.NONE)
-
-# TODO: - Cargar Roles basicos de usuarios en un fixture
-#       - Añadir asignacion de rol automatico al registrarse por cierta ruta
-#       -
 
 
 @receiver(signal=m2m_changed, sender=User.rol.through)

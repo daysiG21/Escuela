@@ -68,3 +68,9 @@ class CustomUserCreateSerializer(UserCreateSerializer):
                 detail=_("El rol especificado no existe"),
                 code=status.HTTP_404_NOT_FOUND
             )
+
+
+class UpdateUserSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', 'picture']

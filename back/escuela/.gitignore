@@ -1,0 +1,11 @@
+venv/
+../.idea
+.idea/
+/trabajoFinal
+*pyc
+/escuela/cursos/migrations
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
+/db.sqlite3
