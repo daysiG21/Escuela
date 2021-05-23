@@ -1,10 +1,14 @@
 import React, {useState, useContext} from 'react'
 import Swal from 'sweetalert2'
 import {useHistory} from 'react-router-dom'
+<<<<<<< HEAD
 //import {loginFire} from "../Services/authFireServices"
 import {loginUsuario} from "../Services/UsuarioServices"
 import {AuthFireContext} from '../context/authFireContext'
 //import {UsuarioContext} from '../context/usuarioContext'
+=======
+import {loginUsuario} from '../Services/UsuarioServices'
+>>>>>>> f1a9501e4acdf2a3e201655c37eb1fef74502325
 
 export default function LoginView() {
   const [value, setValue] = useState({   
@@ -24,6 +28,7 @@ export default function LoginView() {
 
   const ingresar = (e)=>{
     e.preventDefault()
+<<<<<<< HEAD
     //console.log(value);
     //loginFire(value)
     loginUsuario(value)
@@ -32,6 +37,13 @@ export default function LoginView() {
       //console.log(rpta.user.uid);
       //setAuthUserId(rpta.user.uid)
       setAuthUserId(rpta.auth_token)
+=======
+    loginFire(value)
+    loginUsuario(value)
+    .then(rpta=>{
+      console.log("algo paso", rpta);
+      setAuthUserId(rpta.user.uid)
+>>>>>>> f1a9501e4acdf2a3e201655c37eb1fef74502325
       Swal.fire({
         icon:'success',
         title:'Ingresando al sistema',
@@ -45,6 +57,7 @@ export default function LoginView() {
       
     })
     .catch(error=>{
+      console.log("algo paso");
       Swal.fire({
         icon:'error',
         title:'Usuario y/o contraseña incorrecta'      

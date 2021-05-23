@@ -3,6 +3,10 @@ from django.db import models
 from django.core.validators import RegexValidator
 from django.contrib.auth.models import AbstractUser, BaseUserManager ## A new class is imported. ##
 from django.utils.translation import gettext_lazy as _
+# Signals
+from django.db.models.signals import m2m_changed
+from django.dispatch import receiver
+
 
 class Role(models.Model):
     """
@@ -10,21 +14,20 @@ class Role(models.Model):
         Clientes
         Profesores
     """
-    ADMIN = 0
     CLIENTE = 1
     PROFESOR = 2
 
     ROLE_CHOICES = (
-        (ADMIN, 'administrador'),
         (CLIENTE, 'cliente'),
         (PROFESOR, 'profesor'),
     )
 
     id = models.PositiveSmallIntegerField(choices=ROLE_CHOICES, primary_key=True)
-    titulo = models.CharField(max_length=20, blank=True)
+    # titulo = models.CharField(max_length=20, blank=True)
 
     def __str__(self):
         return self.get_id_display()
+
 
 class UserManager(BaseUserManager):
     """Define a model manager for User model with no username field."""
@@ -59,10 +62,11 @@ class UserManager(BaseUserManager):
 
         return self._create_user(email, password, **extra_fields)
 
-    def random(self):
-        count = self.aggregate(count=Count('id'))['count']
-        random_index = randint(0, count - 1)
-        return self.all()[random_index]
+    # def random(self):
+    #     count = self.aggregate(count=Count('id'))['count']
+    #     random_index = randint(0, count - 1)
+    #     return self.all()[random_index]
+
 
 class User(AbstractUser):
     """ Usuario base
@@ -79,14 +83,16 @@ class User(AbstractUser):
 
     objects = UserManager()
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['first_name', 'last_name']
+    REQUIRED_FIELDS = []
 
     def get_username(self) -> str:
         return self.email
 
+
 class ClienteManager(models.Manager):
     def get_queryset(self, *args, **kwargs):
         return super().get_queryset(*args, **kwargs).filter(type=Role.CLIENTE)
+
 
 class Cliente(User):
     base_type = Role.CLIENTE
@@ -99,13 +105,16 @@ class Cliente(User):
     def more(self):
         return self.clientemore
 
+
 class ClienteMore(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='cliente', null=True)
     premium = models.BooleanField(default=False, blank=False)
 
 
 class ProfesorManager(models.Manager):
     def get_queryset(self, *args, **kwargs):
         return super().get_queryset(*args, **kwargs).filter(type=Role.PROFESOR)
+
 
 class Profesor(User):
     base_type = Role.PROFESOR
@@ -117,6 +126,7 @@ class Profesor(User):
     @property
     def more(self):
         return self.profesormore
+
 
 class ProfesorMore(models.Model):
 
@@ -134,4 +144,17 @@ class ProfesorMore(models.Model):
 
 # TODO: - Cargar Roles basicos de usuarios en un fixture
 #       - Añadir asignacion de rol automatico al registrarse por cierta ruta
-#       - 
+#       -
+
+
+@receiver(signal=m2m_changed, sender=User.rol.through)
+def create_related_role(sender, instance, **kwargs):
+    action = kwargs.pop('action', None)
+    pk_set = kwargs.pop('pk_set', None)
+    if action == "post_add":
+        rol = list(pk_set)
+        if rol[0] == Role.CLIENTE:
+            ClienteMore.objects.create(user=instance)
+
+        if rol[0] == Role.PROFESOR:
+            ProfesorMore.objects.create(user=instance)
