@@ -23,3 +23,6 @@ Esta es una proyecto web que contiene cursos pregrabados online. Los profesores 
 - https://github.com/daysiG21
 - https://github.com/juanca-dev
 - https://github.com/davidbgemin
+
+## Despliegue en AWS:
+- http://escuela-codigo-dev2.us-west-2.elasticbeanstalk.com/auth/
