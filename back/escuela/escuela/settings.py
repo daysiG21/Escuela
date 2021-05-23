@@ -11,6 +11,16 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 import os
 from pathlib import Path
+from django.core.exceptions import ImproperlyConfigured
+
+
+def get_secret(setting):
+    """Get the secret variable or return explicit exception."""
+    try:
+        return os.environ[setting]
+    except KeyError:
+        error_msg = f'Set the {setting} environment variable'
+    raise ImproperlyConfigured(error_msg)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -86,12 +96,25 @@ WSGI_APPLICATION = 'escuela.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': get_secret('RDS_DB_NAME'),
+#         'USER': get_secret('RDS_USERNAME'),
+#         'PASSWORD': get_secret('RDS_PASSWORD'),
+#         'HOST': get_secret('RDS_HOSTNAME'),
+#         'PORT': get_secret('RDS_PORT'),
+#     }
+# }
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
