@@ -2,7 +2,7 @@
 
 Antes de comenzar a usar el proyecto se deben cargar los roles de usuario
 
-``python manage.py loaddata fixtures/*.json``
+``python manage.py makemigrations && python manage.py migrate && python manage.py loaddata fixtures/roles.json && python manage.py runserver``
 
 Las colecciones para probar los endpoints de usuario se encuentran en la carpeta ``docs``.
 
