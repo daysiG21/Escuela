@@ -10,13 +10,13 @@ export default function TarjetaCarrito({curso,pos}){
     <div className="card mb-3" >
     <div className="row g-0">
       <div className="col-md-4" >
-        <img src={curso.producto_imagen} className="img-fluid" alt="..." />
+        <img src={curso.cursoImagen} className="img-fluid" alt="..." />
       </div>
       <div className="col-md-8">
         <div className="card-body">
-          <h6 className="card-title">{curso.producto_nombre}</h6>
-          <p className="card-text text-muted">S/ {parseFloat(curso.producto_precio).toFixed(2)}</p>
-          <p className="card-text">Profesor: {curso.profesor}</p>
+          <h6 className="card-title">{curso.cursoTema}</h6>
+          <p className="card-text text-muted">S/ {parseFloat(curso.cursoPrecio).toFixed(2)}</p>
+          <p className="card-text">Profesor: {curso.profesorId}</p>
           <button className="btn btn-danger btn-sm" onClick={() => {removerCurso(pos); }}>
                   <i className="fas fa-trash"></i>
                 </button>

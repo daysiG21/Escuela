@@ -5,9 +5,11 @@ export const CarritoContext = createContext();
 const CarritoContextProvider = (props)=>{
   const [carrito, setCarrito] = useState([]);
 
-  const anadirCurso = (curso) => {  
+  const anadirCurso = (curso) => { 
+    console.log(curso) 
     for (let i = 0; i < carrito.length; i++) {
-      if (carrito[i].id === curso.id) {        
+     
+      if (carrito[i].cursoId === curso.cursoId) {        
         return; 
       }
     }

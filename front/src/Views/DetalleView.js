@@ -21,6 +21,7 @@ export default function DetalleView(props){
  
   const anadirCursoContext= ()=>{
     let cursoAlCarrito = {...curso,cantidad:1}
+   
      anadirCurso(cursoAlCarrito)
      Swal.fire({ //alerta!
       icon:'success',
@@ -53,15 +54,15 @@ export default function DetalleView(props){
       <div className="row"> 
         <div className="col-lg-12">
         <div className="cardDet">
-        <div className="card_left"  style={{backgroundImage:`url(${curso.producto_imagen})` }}>
+        <div className="card_left"  style={{backgroundImage:`url(${curso.cursoImagen})` }}>
         </div>
         <div className="card_right">
-          <h1>{curso.producto_nombre}</h1>
+          <h1>{curso.cursoTema}</h1>
           <div className="card_right__details">
             
             <div className="card_right__review">            
-              <p>{curso.producto_descripcion}</p>               
-              <p>S/ {parseFloat(curso.producto_precio).toFixed(2)}</p>
+              <p>{curso.descripionCurso}</p>               
+              <p>S/ {parseFloat(curso.cursoPrecio).toFixed(2)}</p>
             </div>
             
           </div>

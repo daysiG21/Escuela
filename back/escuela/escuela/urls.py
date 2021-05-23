@@ -23,6 +23,8 @@ urlpatterns = [
     path('pagotemplate/', pagotemplate),
     path('admin/', admin.site.urls),
     path('auth/', include('usuarios.urls'), name='auth'),
+    path('curso/', include('cursos.urls')),
+    path('categoria/', include('cursos.urls'))
 ]
 
 if settings.DEBUG:

@@ -10,7 +10,11 @@ export default function CursosView(){
 
   const getCursos = async()=>{
     let response = await listarCursos()
-    setCursos(response)
+    let obj = response.map((curso)=>{
+      return {...curso, id:curso.cursoId}
+    })
+
+    setCursos(obj)
   }
 
   useEffect(()=>{
@@ -35,10 +39,10 @@ export default function CursosView(){
 
   
   let columns =[
-    {field:'curso', headerName:'Asignatura', width:300},
-    {field:'producto_nombre', headerName:'Tema', width:300},
-    {field:'profesor', headerName:'Profesor', width:300},
-    {field:'producto_precio', headerName:'Precio', width:100},
+    //{field:'categoria', headerName:'Asignatura', width:300},
+    {field:'cursoTema', headerName:'Tema', width:300},
+    {field:'profesorId', headerName:'Profesor', width:300},
+    {field:'cursoPrecio', headerName:'Precio', width:100},
     {
       field:'id',
       headerName:'Acciones',

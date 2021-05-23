@@ -16,7 +16,7 @@ export default function CarritoView(){
   let totalCarrito = 0
   if(carrito.length > 1){
     for(let i =0; i<carrito.length; i++){
-      totalCarrito = totalCarrito + parseFloat(carrito[i].producto_precio)
+      totalCarrito = totalCarrito + parseFloat(carrito[i].cursoPrecio)
     }
     /*
     totalCarrito = carritoTmp.reduce(
@@ -24,7 +24,7 @@ export default function CarritoView(){
     )
     */
   }else if(carrito.length === 1){
-    totalCarrito =parseFloat(carrito[0].producto_precio)
+    totalCarrito =parseFloat(carrito[0].cursoPrecio)
   }
 
 
