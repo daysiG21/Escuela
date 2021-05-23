@@ -1,8 +1,10 @@
 import React, {useState, useContext} from 'react'
-import {loginFire} from "../Services/authFireServices"
-import {AuthFireContext} from '../context/authFireContext'
 import Swal from 'sweetalert2'
 import {useHistory} from 'react-router-dom'
+//import {loginFire} from "../Services/authFireServices"
+import {loginUsuario} from "../Services/UsuarioServices"
+import {AuthFireContext} from '../context/authFireContext'
+//import {UsuarioContext} from '../context/usuarioContext'
 
 export default function LoginView() {
   const [value, setValue] = useState({   
@@ -11,7 +13,7 @@ export default function LoginView() {
   })
 
   const {userId, setAuthUserId} = useContext(AuthFireContext) 
-
+  
   let history = useHistory()
 
   const actualizarInput = (e)=>{
@@ -22,9 +24,14 @@ export default function LoginView() {
 
   const ingresar = (e)=>{
     e.preventDefault()
-    loginFire(value)
-    .then(rpta=>{
-      setAuthUserId(rpta.user.uid)
+    //console.log(value);
+    //loginFire(value)
+    loginUsuario(value)
+    .then(rpta=>{      
+      if(rpta.auth_token.length>0){        
+      //console.log(rpta.user.uid);
+      //setAuthUserId(rpta.user.uid)
+      setAuthUserId(rpta.auth_token)
       Swal.fire({
         icon:'success',
         title:'Ingresando al sistema',
@@ -34,6 +41,8 @@ export default function LoginView() {
       .then(()=>{        
         history.push('/')
       })
+      }     
+      
     })
     .catch(error=>{
       Swal.fire({

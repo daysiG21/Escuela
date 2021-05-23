@@ -4,6 +4,7 @@ import {CarritoContext} from '../context/carritoContext'
 import NavAdmin from "./NavAdmin"
 import NavCliente from "./NavCliente"
 import {AuthFireContext} from "../context/authFireContext"
+//import {UsuarioContext} from '../context/usuarioContext'
 import {logoutFire} from "../Services/authFireServices"
 import Swal from "sweetalert2"
 
@@ -15,6 +16,7 @@ export default function TopNav(){
   const manejarColapso = () => setEstaColapsado(!estaColapsado);
 
   const {userId, setAuthUserId} = useContext(AuthFireContext)
+  //const {userId, setAuthUserId} = useContext(UsuarioContext)
 
   /*
   const [value, setValue] = useState({
@@ -55,6 +57,14 @@ export default function TopNav(){
       if(result.isDismissed === true){
         return
       }
+      setAuthUserId(null)
+        Swal.fire({          
+          icon:'success',
+          title:"Salio del Sistema",
+          showConfirmButton:false,
+          timer:2000
+        })
+      /*
       logoutFire()
       .then(() => {
         setAuthUserId(null)
@@ -68,6 +78,7 @@ export default function TopNav(){
           history.push('/')
         })
       })
+      */
     })
   }
   return (

@@ -9,9 +9,12 @@ import CarritoView from './Views/CarritoView'
 import PostulanteView from './Views/CrearPostulanteView'
 import LoginView from './Views/LoginView'
 import { AuthFireContext } from "./context/authFireContext";
+//import {UsuarioContext} from './context/usuarioContext'
+import HomeViewF from './Views/HomeViewF'
 
 export default function Routes(){
   const { userId } = useContext(AuthFireContext);
+  //const { userId } = useContext(UsuarioContext);
   return (
     <Fragment>
       <Route path="/" exact component={HomeView} />
@@ -21,7 +24,8 @@ export default function Routes(){
       <Route path="/detalle/:id" exact component={DetalleView}></Route>
       <Route path="/carrito" exact component={CarritoView} />
       <Route path="/ensena" exact component={PostulanteView}/>
-      <Route path="/login" exact component={LoginView} />      
+      <Route path="/login" exact component={LoginView} />
+      <Route path="/categoria/:id" exact component={HomeViewF} />      
     </Fragment>
   )
 }

@@ -1,16 +1,39 @@
-import React,{Fragment, useContext} from 'react'
+import React,{Fragment, useContext, useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
 import {CarritoContext} from '../context/carritoContext'
+import {listarCategorias} from '../Services/CategoriaService'
+import LinkCategoria from '../Componentes/LinkCategoria'
 
 export default function NavCliente() {
   const {carrito} = useContext(CarritoContext) 
+  const [categoria, setCategoria] = useState([])
+ 
 
+  const getCategoria = async()=>{
+    let response = await listarCategorias() 
+    //console.log(response);  
+    setCategoria(response)
+  }
+
+  useEffect(()=>{
+    getCategoria()
+   
+  },[])
+  
+ 
+
+
+
+  
   return (
     <Fragment>
       
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                 <li className="nav-item dropdown">
                 <Link className="nav-link text-dark" to='/'>Cursos</Link>
+                
+                
+                
                 </li>                             
               </ul>         
               <ul className="navbar-nav">
