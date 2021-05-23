@@ -8,7 +8,7 @@ import mercadopago
 urlpatterns = [
     path('', include('djoser.urls')),
     path('', include('djoser.urls.authtoken')),
-    path('user/update/', UpdateUserProfileController.as_view()),
+    path('users/update/', UpdateUserProfileController.as_view()),
     path('restricted/', restricted),
 ]
 

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import status
@@ -37,6 +37,10 @@ class CustomUpdatePermission(permissions.BasePermission):
 
 
 class UpdateUserProfileController(UpdateAPIView):
-    queryset = User.objects.all()
     serializer_class = UpdateUserSerializer
-    permission_classes = [CustomUpdatePermission]
+    permission_classes = [CustomUpdatePermission, IsAuthenticated]
+
+    def get_object(self):
+        pk = self.kwargs["pk"]
+        obj = get_object_or_404(User, pk=pk)
+        return obj
