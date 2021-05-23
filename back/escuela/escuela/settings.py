@@ -133,10 +133,6 @@ DJOSER = {
     }
 }
 
-CORS_ALLOWED_ORIGINS = [
-    "*",
-]
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
@@ -170,4 +166,4 @@ STATICFILES_DIRS = (
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
+CORS_ORIGIN_ALLOW_ALL = True
