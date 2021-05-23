@@ -1,0 +1,15 @@
+[
+ {
+      "model":"usuarios.role",
+      "pk":1,
+      "fields":{
+
+      }
+   },
+   {
+      "model":"usuarios.role",
+      "pk":2,
+      "fields":{
+      }
+   }
+]
