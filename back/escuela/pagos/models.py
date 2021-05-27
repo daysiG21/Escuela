@@ -2,8 +2,20 @@ from django.db import models
 from usuarios.models import ClienteMore
 from cursos.models import CursoModel
 
+# Libreria de traduccion
+from django.utils.translation import ugettext_lazy as _
+
 # Create your models here.
+
+
 class PagoModel(models.Model):
+
+    class Status(models.TextChoices):
+        NONE = '', _('Sin estado')
+        EN_PROCESO = 'IN', _('En Proceso')
+        APROBADO = 'A', _('Aprobado')
+        RECHAZADO = 'R', _('Rechazado')
+
     pagoId = models.AutoField(
         primary_key=True,
         unique=True,

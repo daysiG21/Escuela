@@ -5,6 +5,7 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.generics import UpdateAPIView
 from rest_framework import permissions
+from djoser.serializers import UserSerializer
 
 
 from .serializers import UpdateUserSerializer
@@ -37,8 +38,8 @@ class CustomUpdatePermission(permissions.BasePermission):
 
 
 class UpdateUserProfileController(UpdateAPIView):
-    serializer_class = UpdateUserSerializer
-    permission_classes = [CustomUpdatePermission, IsAuthenticated]
+    serializer_class = UserSerializer
+    permission_classes = [IsAuthenticated]
 
     def get_object(self):
         pk = self.kwargs["pk"]
