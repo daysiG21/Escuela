@@ -73,4 +73,4 @@ class CustomUserCreateSerializer(UserCreateSerializer):
 class UpdateUserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'picture']
+        fields = ['email', 'first_name', 'last_name', 'foto']

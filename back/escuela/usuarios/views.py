@@ -1,11 +1,18 @@
 from django.shortcuts import render, get_object_or_404
 from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework import status
 from rest_framework.response import Response
-from rest_framework.generics import UpdateAPIView
+from rest_framework.generics import RetrieveUpdateAPIView
+
+# Permissions
 from rest_framework import permissions
+from usuarios.permissions import IsAccountOwner
+
+# Serializers
 from djoser.serializers import UserSerializer
+
+
 
 
 from .serializers import UpdateUserSerializer
@@ -37,11 +44,10 @@ class CustomUpdatePermission(permissions.BasePermission):
         return True # grant access otherwise
 
 
-class UpdateUserProfileController(UpdateAPIView):
-    serializer_class = UserSerializer
-    permission_classes = [IsAuthenticated]
+class UpdateUserProfileController(RetrieveUpdateAPIView):
+    """ Controlador de vista de actualizacion
+        del perfil de usuario. """
 
-    def get_object(self):
-        pk = self.kwargs["pk"]
-        obj = get_object_or_404(User, pk=pk)
-        return obj
+    serializer_class = UpdateUserSerializer
+    permission_classes = (IsAccountOwner, IsAuthenticated)
+    queryset = User.objects.all()
