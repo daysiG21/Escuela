@@ -1,6 +1,6 @@
 import {useState, createContext} from 'react'
 
-export const AuthFireContext = createContext() 
+export const AuthFireContext = createContext();
 
 const AuthContextProvider = (props) => {
   const [userId, setUserId] = useState(null) 

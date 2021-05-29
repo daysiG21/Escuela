@@ -5,8 +5,8 @@ const URL = "http://127.0.0.1:8000/curso"
 
 const listarCursos = async()=>{
   try{
-    let {data} = await axios.get(`${URL}/`)  
-    
+    let {data} = await axios.get(`${process.env.REACT_APP_API_URL}/curso/`)
+    console.log(data)
     return data
   }
   catch(error){
@@ -17,7 +17,7 @@ const listarCursos = async()=>{
 const buscarCursoId = async(id)=>{
 
   try{
-    let {data} = await axios.get(`${URL}/${id}/`)
+    let {data} = await axios.get(`${process.env.REACT_APP_API_URL}/curso/${id}/`)
     return data;
   }
   catch(error){

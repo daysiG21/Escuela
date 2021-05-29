@@ -11,7 +11,7 @@ export default function HomeView(props){
   return(
     <Fragment>
       <div className="mt-3">
-        <h1>Cursoso</h1> 
+        <h1>Cursos</h1>
         <div className="mt-4"> 
           <Tarjetas/>
         </div>

@@ -7,7 +7,7 @@ import Swal from 'sweetalert2'
 export default function Tarjetas(){
   const [cursos, setCursos] = useState([])
   const [mostrar, setMostrar] = useState(0)
-  let ultimaPagina =0
+  let ultimaPagina = 0
   const getCursos = async ()=>{
     let response = await listarCursos()
     //console.log(response)
@@ -51,10 +51,7 @@ export default function Tarjetas(){
   }
   return(
     <div className="row">
-    
-    
       {
-        
         cursos.slice(mostrar, mostrar + 8).map((cur,i)=>(
         //  console.log(cur)
           <Tarjeta key={i} curso={cur}/>

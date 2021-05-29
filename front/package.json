@@ -20,7 +20,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "rm -rf ../back/escuela/build && react-scripts build && cp -r build ../back/escuela/build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

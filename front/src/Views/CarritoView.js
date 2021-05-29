@@ -12,7 +12,7 @@ export default function CarritoView(){
 
  
   const {carrito,anadirCurso,removerCurso,limpiarCarrito} = useContext(CarritoContext)
-  const {userId, setAuthUserId} = useContext(AuthFireContext) 
+  const {userId, setAuthUserId} = useContext(AuthFireContext)
  
   
   let totalCarrito = 0
@@ -25,33 +25,36 @@ export default function CarritoView(){
       (total, prod) => parseInt(total.producto_precio) + parseInt(prod.producto_precio)
     )
     */
-  }else if(carrito.length === 1){
+  }else if(carrito.length === 1){ // Si hay un solo objeto
     totalCarrito =parseFloat(carrito[0].cursoPrecio)
   }
 
 
 
-  const pagar = async()=>{    
+  const pagar = async()=>{
    // history.push('http://google.com.pe')
    const config = {
-    headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Authorization':'Token '+ userId
+        headers: {
+            'Authorization':'Token '+ userId,
+            'Content-Type': 'application/json',
+        }
     }
-}
-const body = JSON.stringify({ carrito: carrito});
+    const body = JSON.stringify({ carrito: carrito});
+    console.log('carrito', carrito);
+    const res = await axios.post(`${process.env.REACT_APP_API_URL}/pagos/`, body, config);
+    console.log('response', res);
 
-const res = await axios.post(`${process.env.REACT_APP_API_URL}/pagos/`, body, config)
-/*
+    window.location.href = res.data.url;
+
+    /*
    limpiarCarrito()
    Swal.fire({
     icon: "success",
     title: "Gracias por su Compra",
     showConfirmButton:false,
-    timer:1000 
+    timer:1000
   }).then(() => {
-    
+
     history.push('/')
 
   })

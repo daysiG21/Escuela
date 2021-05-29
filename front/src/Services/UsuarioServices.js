@@ -1,14 +1,14 @@
 import axios from 'axios'
 
-const URL ="https://601e0134be5f340017a1a122.mockapi.io/usuario"
-const DJANGO  = "http://localhost:8000/auth/token/login/"
+// const URL ="https://601e0134be5f340017a1a122.mockapi.io/usuario"
 const URLUser = "http://localhost:8000/auth/users/"
 
 const loginUsuario = async(data)=>{
   let {email, password} = data;
   //console.log(data);
   try{
-    let token = await axios.post(DJANGO, {'email': email, 'password': password})
+    // console.log(`${process.env.REACT_APP_API_URL}`)
+    let token = await axios.post(`${process.env.REACT_APP_API_URL}/auth/token/login/`, {'email': email, 'password': password})
     .then(
       res => {
          //console.log('response from django: ',res)
