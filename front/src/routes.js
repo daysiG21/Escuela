@@ -9,6 +9,7 @@ import CarritoView from './Views/CarritoView'
 import PostulanteView from './Views/CrearPostulanteView'
 import LoginView from './Views/LoginView'
 import { AuthFireContext } from "./context/authFireContext";
+import RegistrarUsuarioView from './Views/RegistrarUsuarioView'
 
 export default function Routes(){
   const { userId } = useContext(AuthFireContext);
@@ -22,7 +23,9 @@ export default function Routes(){
       <Route path="/detalle/:id" exact component={DetalleView}></Route>
       <Route path="/carrito" exact component={CarritoView} />
       <Route path="/ensena" exact component={PostulanteView}/>
-      <Route path="/login" exact component={LoginView} />           
+      <Route path="/login" exact component={LoginView} /> 
+      <Route path="/registrar" exact component={RegistrarUsuarioView}></Route>
+                
     </Fragment>
   )
 }

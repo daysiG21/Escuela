@@ -25,7 +25,7 @@ export default function FormEditCurso({id}){
   const getCursoId =async ()=>{
     let response = await buscarCursoId(id)
  
-    console.log(response)
+   
     let {producto_nombre,producto_descripcion,producto_precio,curso,profesor,producto_imagen} = response
     setValue({
       producto_nombre:producto_nombre,

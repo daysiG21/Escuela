@@ -6,7 +6,7 @@ const CarritoContextProvider = (props)=>{
   const [carrito, setCarrito] = useState([]);
 
   const anadirCurso = (curso) => { 
-    console.log(curso) 
+   
     for (let i = 0; i < carrito.length; i++) {
      
       if (carrito[i].cursoId === curso.cursoId) {        

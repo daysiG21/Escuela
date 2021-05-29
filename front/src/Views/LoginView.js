@@ -28,11 +28,12 @@ export default function LoginView() {
     //loginFire(value)
     loginUsuario(value)
     .then(rpta=>{  
-      console.log(rpta.auth_token);    
+      //console.log(rpta.auth_token);    
       if(rpta.auth_token.length>0){        
      
       //setAuthUserId(rpta.user.uid)
       setAuthUserId(rpta.auth_token)
+      localStorage.setItem('user', JSON.stringify(rpta.auth_token))
       Swal.fire({
         icon:'success',
         title:'Ingresando al sistema',
@@ -46,7 +47,7 @@ export default function LoginView() {
       
     })
     .catch(error=>{
-      console.log("algo paso");
+      //console.log("algo paso");
       Swal.fire({
         icon:'error',
         title:'Usuario y/o contraseña incorrecta'      

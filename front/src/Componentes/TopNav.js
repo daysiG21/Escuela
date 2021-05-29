@@ -16,6 +16,7 @@ export default function TopNav(){
   const manejarColapso = () => setEstaColapsado(!estaColapsado);
 
   const {userId, setAuthUserId} = useContext(AuthFireContext)
+
   //const {userId, setAuthUserId} = useContext(UsuarioContext)
 
   /*
@@ -81,6 +82,7 @@ export default function TopNav(){
       */
     })
   }
+  
   return (
     <Fragment>
         <nav className="navbar navbar-expand-lg navbar-light bg-light">

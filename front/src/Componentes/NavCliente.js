@@ -37,8 +37,9 @@ export default function NavCliente() {
                 </li>                             
               </ul>         
               <ul className="navbar-nav">
+                
                 <li className="nav-item">
-                  <Link className="nav-link text-dark" to='/ensena'>Enseña en Escuela Libre</Link>               
+                  <Link className="nav-link text-dark" to='/registrar'>Regístrate</Link>               
                 </li>             
                 
                   <li className="nav-item">
