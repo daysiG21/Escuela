@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     'rest_framework',
     # AUTHENTICATION
     'rest_framework.authtoken',
@@ -58,6 +59,8 @@ INSTALLED_APPS = [
     'pagos',
     'cursos',
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -190,3 +193,5 @@ STATICFILES_DIRS = (
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ORIGIN_ALLOW_ALL = True
+
+MP_ACCESS_TOKEN = get_secret('MP_ACCESS_TOKEN')

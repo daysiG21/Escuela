@@ -22,9 +22,11 @@ from pagos.views import pagotemplate
 urlpatterns = [
     path('pagotemplate/', pagotemplate),
     path('admin/', admin.site.urls),
-    path('auth/', include('usuarios.urls'), name='auth'),
-    path('curso/', include('cursos.urls'))
-   
+    path('auth/', include(
+                            ('usuarios.urls', 'usuarios'),
+                            namespace='auth')
+                          ),
+    path('curso/', include(('cursos.urls', 'cursos'), namespace='curso')),
 ]
 
 if settings.DEBUG:
