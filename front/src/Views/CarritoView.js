@@ -3,6 +3,7 @@ import {CarritoContext} from '../context/carritoContext'
 import TarjetaCarrito from '../Componentes/TarjetaCarrito'
 import Swal from 'sweetalert2'
 import {useHistory} from 'react-router-dom'
+import {AuthFireContext} from '../context/authFireContext'
 
 export default function CarritoView(){
   let precio  =0
@@ -10,7 +11,7 @@ export default function CarritoView(){
 
  
   const {carrito,anadirCurso,removerCurso,limpiarCarrito} = useContext(CarritoContext)
-  
+  const {userId, setAuthUserId} = useContext(AuthFireContext) 
  
   
   let totalCarrito = 0
@@ -29,7 +30,8 @@ export default function CarritoView(){
 
 
 
-  const pagar = ()=>{
+  const pagar = ()=>{    
+   // history.push('http://google.com.pe')
 
    limpiarCarrito()
    Swal.fire({
@@ -38,6 +40,7 @@ export default function CarritoView(){
     showConfirmButton:false,
     timer:1000 
   }).then(() => {
+    
     history.push('/')
 
   })

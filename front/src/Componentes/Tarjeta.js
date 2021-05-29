@@ -2,7 +2,7 @@ import React from 'react'
 import "./css/estilos.css"
 import {Link} from 'react-router-dom'
 export default function Tarjeta({curso}){
-  console.log(curso.cursoPrecio)
+ 
   return (
   
       <div className="col-sm-12 col-lg-6 col-xl-3">  

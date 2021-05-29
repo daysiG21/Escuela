@@ -48,7 +48,7 @@ export default function FormCrearCurso(){
  }
 
  const subirImagen=(e)=>{
-   console.log(e.target.files[0])
+   //console.log(e.target.files[0])
    let miImagen = e.target.files[0]
    imagen = miImagen
  }

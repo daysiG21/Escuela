@@ -6,7 +6,7 @@ export default function HomeView(props){
  
 
   const id = props.match.params.id
-  console.log(id);
+  //console.log(id);
  
   return(
     <Fragment>

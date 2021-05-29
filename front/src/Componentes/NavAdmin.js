@@ -11,13 +11,12 @@ export default function NavAdmin({salir}) {
                 <li className="nav-item dropdown">
                 <Link className="nav-link text-dark" to='/'>Cursos</Link>
                 </li>  
-                <li>
-                  <Link className="nav-link text-dark" to='/cursos'>Registrar Cursos</Link>
-                </li>             
+                           
               </ul>         
               <ul className="navbar-nav">                          
-              <li className="nav-item">
-                  <Link className="nav-link text-dark" to='/ensena'>Enseña en Escuela Libre</Link>               
+                   
+                <li className="nav-item">
+                  <Link className="nav-link text-dark" to='/registrar'>Regístrate</Link>               
                 </li>    
                 <li className="nav-item">
                   <Link className="nav-link text-dark" to='/login'>Iniciar Sesión</Link>
