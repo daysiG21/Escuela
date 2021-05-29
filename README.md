@@ -17,6 +17,8 @@ Esta es una proyecto web que contiene cursos pregrabados online. Los profesores 
     ![](capturas_proyecto/3.jpg)
     &nbsp;
 - ***Frontend***: contiene las vistas del proyecto en react
+    - Librerías utilizadas:
+        - axios
 
 ## Integrantes:
 - https://github.com/AmaruEscalante
