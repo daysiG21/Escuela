@@ -1,0 +1,66 @@
+[
+  {
+      "model":"cursos.categoriamodel",
+      "pk":1,
+      "fields":{
+         "categoriaNombre":"Geometria"
+      }
+   },
+   {
+      "model":"cursos.categoriamodel",
+      "pk":2,
+      "fields":{
+         "categoriaNombre":"Matematicas"
+      }
+   },
+   {
+      "model":"cursos.categoriamodel",
+      "pk":3,
+      "fields":{
+         "categoriaNombre":"Programacion"
+      }
+   },
+   {
+      "model":"cursos.categoriamodel",
+      "pk":4,
+      "fields":{
+         "categoriaNombre":"Historia"
+      }
+   },
+   {
+      "model":"cursos.cursomodel",
+      "pk":1,
+      "fields":{
+         "cursoTema":"Triangulos",
+         "cursoPrecio":"20.00",
+         "categoria":1,
+         "profesorId":1,
+         "cursoImagen":"cursos/imagenes/Screenshot_select-area_20210528085601.png",
+         "descripcionCurso":"Curso de geometria"
+      }
+   },
+   {
+      "model":"cursos.cursomodel",
+      "pk":2,
+      "fields":{
+         "cursoTema":"Ecuaciones 1er Grado",
+         "cursoPrecio":"50.00",
+         "categoria":2,
+         "profesorId":2,
+         "cursoImagen":"cursos/imagenes/inecuaciones_ggWHg3B.jpg",
+         "descripcionCurso":"Curso de ecuaciones"
+      }
+   },
+   {
+      "model":"cursos.cursomodel",
+      "pk":3,
+      "fields":{
+         "cursoTema":"Python",
+         "cursoPrecio":"100.00",
+         "categoria":3,
+         "profesorId":4,
+         "cursoImagen":"cursos/imagenes/maxresdefault_ghFd9Kd_MOY43yp.jpg",
+         "descripcionCurso":"Curso de programacion en Python"
+      }
+   }
+]
