@@ -4,6 +4,7 @@ import TarjetaCarrito from '../Componentes/TarjetaCarrito'
 import Swal from 'sweetalert2'
 import {useHistory} from 'react-router-dom'
 import {AuthFireContext} from '../context/authFireContext'
+import axios from 'axios'
 
 export default function CarritoView(){
   let precio  =0
@@ -30,9 +31,19 @@ export default function CarritoView(){
 
 
 
-  const pagar = ()=>{    
+  const pagar = async()=>{    
    // history.push('http://google.com.pe')
+   const config = {
+    headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization':'Token '+ userId
+    }
+}
+const body = JSON.stringify({ carrito: carrito});
 
+const res = await axios.post(`${process.env.REACT_APP_API_URL}/pagos/`, body, config)
+/*
    limpiarCarrito()
    Swal.fire({
     icon: "success",
@@ -44,6 +55,7 @@ export default function CarritoView(){
     history.push('/')
 
   })
+  */
     
   }
   return (
