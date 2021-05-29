@@ -11,16 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 import os
 from pathlib import Path
-from django.core.exceptions import ImproperlyConfigured
-
-
-def get_secret(setting):
-    """Get the secret variable or return explicit exception."""
-    try:
-        return os.environ[setting]
-    except KeyError:
-        error_msg = f'Set the {setting} environment variable'
-    raise ImproperlyConfigured(error_msg)
+from utils import *
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -37,6 +28,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+# private_ip = get_linux_ec2_private_ip()
+# if private_ip:
+#     ALLOWED_HOSTS.append(private_ip)
 
 # Application definition
 
