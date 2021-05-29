@@ -142,24 +142,24 @@ WSGI_APPLICATION = 'escuela.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 
-if 'RDS_DB_NAME' in os.environ:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': get_secret('RDS_DB_NAME'),
-            'USER': get_secret('RDS_USERNAME'),
-            'PASSWORD': get_secret('RDS_PASSWORD'),
-            'HOST': get_secret('RDS_HOSTNAME'),
-            'PORT': get_secret('RDS_PORT'),
-        }
+# if 'RDS_DB_NAME' in os.environ:
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': get_secret('RDS_DB_NAME'),
+        'USER': get_secret('RDS_USERNAME'),
+        'PASSWORD': get_secret('RDS_PASSWORD'),
+        'HOST': get_secret('RDS_HOSTNAME'),
+        'PORT': get_secret('RDS_PORT'),
     }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
-    }
+}
+# else:
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.sqlite3',
+#             'NAME': BASE_DIR / 'db.sqlite3',
+#         }
+#     }
 
 
 
@@ -245,8 +245,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ORIGIN_ALLOW_ALL = True
 
 MP_ACCESS_TOKEN = get_secret('MP_ACCESS_TOKEN')
-
-if 'AWS_ACCESS_KEY_ID' in os.environ:
-    AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
-    AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
+AWS_ACCESS_KEY_ID = get_secret('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = get_secret('AWS_SECRET_ACCESS_KEY')
 
