@@ -89,7 +89,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'rest_framework',
     # S3
-    'storages',
+    # 'storages',
     # AUTHENTICATION
     'rest_framework.authtoken',
     'djoser',
@@ -143,23 +143,23 @@ WSGI_APPLICATION = 'escuela.wsgi.application'
 
 
 # if 'RDS_DB_NAME' in os.environ:
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': get_secret('RDS_DB_NAME'),
+#         'USER': get_secret('RDS_USERNAME'),
+#         'PASSWORD': get_secret('RDS_PASSWORD'),
+#         'HOST': get_secret('RDS_HOSTNAME'),
+#         'PORT': get_secret('RDS_PORT'),
+#     }
+# }
+# else:
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': get_secret('RDS_DB_NAME'),
-        'USER': get_secret('RDS_USERNAME'),
-        'PASSWORD': get_secret('RDS_PASSWORD'),
-        'HOST': get_secret('RDS_HOSTNAME'),
-        'PORT': get_secret('RDS_PORT'),
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-# else:
-#     DATABASES = {
-#         'default': {
-#             'ENGINE': 'django.db.backends.sqlite3',
-#             'NAME': BASE_DIR / 'db.sqlite3',
-#         }
-#     }
 
 
 
@@ -222,20 +222,20 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-# STATICFILES_DIRS = (
-#     os.path.join(BASE_DIR, 'static'),
-# )
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 ### Django storages - use this for production
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 ### Django storages - use in production
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
