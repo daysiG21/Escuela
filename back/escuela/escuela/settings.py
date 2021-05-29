@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'rest_framework',
+    # S3
+    'storages',
     # AUTHENTICATION
     'rest_framework.authtoken',
     'djoser',
@@ -95,24 +97,26 @@ WSGI_APPLICATION = 'escuela.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+if 'RDS_DB_NAME' in os.environ:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': get_secret('RDS_DB_NAME'),
+            'USER': get_secret('RDS_USERNAME'),
+            'PASSWORD': get_secret('RDS_PASSWORD'),
+            'HOST': get_secret('RDS_HOSTNAME'),
+            'PORT': get_secret('RDS_PORT'),
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': get_secret('RDS_DB_NAME'),
-#         'USER': get_secret('RDS_USERNAME'),
-#         'PASSWORD': get_secret('RDS_PASSWORD'),
-#         'HOST': get_secret('RDS_HOSTNAME'),
-#         'PORT': get_secret('RDS_PORT'),
-#     }
-# }
+
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
@@ -173,15 +177,20 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)
+# STATICFILES_DIRS = (
+#     os.path.join(BASE_DIR, 'static'),
+# )
 
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-MEDIA_ROOT = BASE_DIR / 'media'
+### Django storages - use this for production
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
 MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+### Django storages - use in production
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
@@ -191,3 +200,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ORIGIN_ALLOW_ALL = True
 
 MP_ACCESS_TOKEN = get_secret('MP_ACCESS_TOKEN')
+
+if 'AWS_ACCESS_KEY_ID' in os.environ:
+    AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
+    AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
+
