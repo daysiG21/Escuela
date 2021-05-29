@@ -76,7 +76,7 @@ class CursoModel(models.Model):
       db_column='imagen',
       verbose_name="Imágen")
 
-  descripionCurso=models.TextField(
+  descripcionCurso=models.TextField(
     db_column='descripcion',
     max_length=1000,
     help_text='Ingrese la descripción del curso',

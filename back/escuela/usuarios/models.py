@@ -110,6 +110,8 @@ class ClienteMore(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='cliente')
     premium = models.BooleanField(default=False, blank=False)
 
+    def __str__(self):
+        return self.user.get_full_name()
 
 class ProfesorManager(models.Manager):
     def get_queryset(self, *args, **kwargs):
@@ -143,6 +145,8 @@ class ProfesorMore(models.Model):
     phone_number = models.CharField(validators=[phone_regex], max_length=12, blank=True)  # validators should be a list
     estado = models.CharField(max_length=1, choices=Estado.choices, blank=False, default=Estado.NONE)
 
+    def __str__(self):
+        return self.user.get_full_name()
 
 @receiver(signal=m2m_changed, sender=User.rol.through)
 def create_related_role(sender, instance, **kwargs):

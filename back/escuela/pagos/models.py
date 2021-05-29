@@ -5,8 +5,6 @@ from cursos.models import CursoModel
 # Libreria de traduccion
 from django.utils.translation import ugettext_lazy as _
 
-# Create your models here.
-
 
 class PagoModel(models.Model):
 
@@ -16,52 +14,23 @@ class PagoModel(models.Model):
         APROBADO = 'A', _('Aprobado')
         RECHAZADO = 'R', _('Rechazado')
 
-    pagoId = models.AutoField(
-        primary_key=True,
-        unique=True,
-        null=False,
-        db_column='id'
-    )
+    pagoId = models.AutoField(primary_key=True,unique=True,null=False,db_column='id')
+    pagoIdPasarela = models.CharField(max_length=50, blank=False, default='none', db_column='id_pasarela', help_text='id de pago')  # ID payment in MercadoPago
+    pagoPrecio = models.DecimalField(max_digits=6, decimal_places=2, default=00.00,
+                                     db_column='monto', verbose_name='precio del curso',
+                                     help_text='precio del curso')
 
-    pagoIdPasarela = models.IntegerField(
-        unique=True,
-        null=False,
-        db_column='id_pasarela',
-        help_text='id de pago'
-    )
+    cursosItems = models.ManyToManyField(to=CursoModel, through='PagosCursoModel')     # items (many to many)
 
-    pagoPrecio = models.DecimalField(
-        max_digits=5,
-        decimal_places=2,
-        db_column='monto',
-        verbose_name='precio del curso',
-        help_text='precio del curso'
-    )
-
-    # items (many to many)
-
-    pagoEstado = models.CharField(
-        max_length=10,
-        null=False,
-        db_column='estado',
-        verbose_name='estado',
-        help_text='estado del pago',
-    )
-
-    pagoDetalleEstado = models.CharField(
-        max_length=10,
-        null=False,
-        db_column='detalle_estado',
-        help_text='detalle del estado del pago',
-    )
-
-    clientes_id = models.ForeignKey(
-        to=ClienteMore,
-        db_column='cliente_id',
-        on_delete=models.CASCADE,
-        verbose_name='id del cliente',
-        help_text='id del cliente',
-    )
+    pagoEstado = models.CharField(max_length=2, choices=Status.choices, blank=False, default=Status.NONE,
+                                  db_column='estado',
+                                  verbose_name='estado',
+                                  help_text='estado del pago')
+    pagoDetalleEstado = models.CharField(max_length=10,null=False,db_column='detalle_estado',
+                                         help_text='detalle del estado del pago')
+    clientes_id = models.ForeignKey(to=ClienteMore,db_column='cliente_id',on_delete=models.CASCADE,
+                                    verbose_name='id del cliente',
+                                    help_text='id del cliente')
 
     class Meta:
         db_table = 'pagos'
@@ -70,13 +39,15 @@ class PagoModel(models.Model):
 
 
 class PagosCursoModel(models.Model):
+
+    """ Modelo intermedio para la relacion Many to Many entre PagosModel y CursosModel"""
+
     pagoIdFK = models.ForeignKey(
-        to=PagoModel,
+        to='PagoModel',
         db_column='pago_id',
         on_delete=models.CASCADE,
         verbose_name='id de pago',
         help_text='id de pago',
-
     )
 
     cursoIdFK = models.ForeignKey(
