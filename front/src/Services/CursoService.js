@@ -1,11 +1,11 @@
 import axios from 'axios'
 
 //const URL ="https://601e0134be5f340017a1a122.mockapi.io/productos"
-const URL = "http://127.0.0.1:8000/curso/curso"
+const URL = "http://127.0.0.1:8000/curso"
 
 const listarCursos = async()=>{
   try{
-    let {data} = await axios.get(URL)  
+    let {data} = await axios.get(`${URL}/`)  
     //console.log(data) 
     return data
   }
@@ -17,7 +17,7 @@ const listarCursos = async()=>{
 const buscarCursoId = async(id)=>{
 
   try{
-    let {data} = await axios.get(`${URL}/${id}`)
+    let {data} = await axios.get(`${URL}/${id}/`)
     return data;
   }
   catch(error){

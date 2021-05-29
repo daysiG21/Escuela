@@ -87,6 +87,7 @@ class User(AbstractUser):
     def get_username(self) -> str:
         return self.email
 
+    
 
 class ClienteManager(models.Manager):
     def get_queryset(self, *args, **kwargs):
@@ -126,6 +127,7 @@ class Profesor(User):
     def more(self):
         return self.profesormore
 
+    
 
 class ProfesorMore(models.Model):
 

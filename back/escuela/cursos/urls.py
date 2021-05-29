@@ -1,8 +1,7 @@
 from django.urls import path
-from .views import ListarCursocontroller,CRUDCursoController,ListarCategoriaController
+from .views import ListarCursocontroller,CRUDCursoController
 
 urlpatterns =[
-  path('curso',ListarCursocontroller.as_view()),
-  path('curso/<int:pk>', CRUDCursoController.as_view()),
-  path('',ListarCategoriaController.as_view())
+  path('',ListarCursocontroller.as_view()),
+  path('<int:pk>/', CRUDCursoController.as_view())
 ]

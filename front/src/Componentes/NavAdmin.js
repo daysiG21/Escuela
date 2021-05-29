@@ -6,8 +6,7 @@ export default function NavAdmin({salir}) {
   const {carrito} = useContext(CarritoContext) 
 
   return (
-    <Fragment>
-      
+    <Fragment>      
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                 <li className="nav-item dropdown">
                 <Link className="nav-link text-dark" to='/'>Cursos</Link>
@@ -16,11 +15,10 @@ export default function NavAdmin({salir}) {
                   <Link className="nav-link text-dark" to='/cursos'>Registrar Cursos</Link>
                 </li>             
               </ul>         
-              <ul className="navbar-nav">
-                <li className="nav-item">
+              <ul className="navbar-nav">                          
+              <li className="nav-item">
                   <Link className="nav-link text-dark" to='/ensena'>Enseña en Escuela Libre</Link>               
-                </li>             
-                
+                </li>    
                 <li className="nav-item">
                   <Link className="nav-link text-dark" to='/login'>Iniciar Sesión</Link>
                   </li>

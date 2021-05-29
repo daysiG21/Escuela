@@ -12,6 +12,8 @@ class CRUDCursoController(RetrieveUpdateDestroyAPIView):
   queryset = CursoModel.objects.all()
   serializer_class = MostrarCursosSerializer
 
-class ListarCategoriaController(ListAPIView):
-  queryset = CategoriaModel.objects.all()
-  serializer_class=CategoriaSerializer
+
+#class ListarCategoriaController(ListAPIView):
+# queryset = CategoriaModel.objects.all()
+# serializer_class=CategoriaSerializer
+  

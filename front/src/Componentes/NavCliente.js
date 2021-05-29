@@ -2,7 +2,7 @@ import React,{Fragment, useContext, useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
 import {CarritoContext} from '../context/carritoContext'
 import {listarCategorias} from '../Services/CategoriaService'
-import LinkCategoria from '../Componentes/LinkCategoria'
+//import LinkCategoria from '../Componentes/LinkCategoria'
 
 export default function NavCliente() {
   const {carrito} = useContext(CarritoContext) 

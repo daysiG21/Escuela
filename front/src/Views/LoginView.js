@@ -27,9 +27,10 @@ export default function LoginView() {
     //console.log(value);
     //loginFire(value)
     loginUsuario(value)
-    .then(rpta=>{      
+    .then(rpta=>{  
+      console.log(rpta.auth_token);    
       if(rpta.auth_token.length>0){        
-      //console.log(rpta.user.uid);
+     
       //setAuthUserId(rpta.user.uid)
       setAuthUserId(rpta.auth_token)
       Swal.fire({

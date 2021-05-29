@@ -16,7 +16,7 @@ export default function TarjetaCarrito({curso,pos}){
         <div className="card-body">
           <h6 className="card-title">{curso.cursoTema}</h6>
           <p className="card-text text-muted">S/ {parseFloat(curso.cursoPrecio).toFixed(2)}</p>
-          <p className="card-text">Profesor: {curso.profesorId}</p>
+          <p className="card-text">Profesor: {curso.profesorId.user.first_name}&nbsp;{curso.profesorId.user.last_name}</p>
           <button className="btn btn-danger btn-sm" onClick={() => {removerCurso(pos); }}>
                   <i className="fas fa-trash"></i>
                 </button>
