@@ -7,7 +7,7 @@ Esta es una proyecto web que contiene cursos pregrabados online. Los profesores 
     - Librerías utilizadas:
         - djangorestframework-simplejwt==4.6.0
         - djoser==2.1.0
-        - mercadopago==2.0.6
+        - mercadopago==1
         - django-cors-headers==3.7.0
     
     ![](capturas_proyecto/1.jpg)
