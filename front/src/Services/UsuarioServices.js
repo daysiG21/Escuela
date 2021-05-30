@@ -1,7 +1,6 @@
 import axios from 'axios'
 
 // const URL ="https://601e0134be5f340017a1a122.mockapi.io/usuario"
-const URLUser = "http://localhost:8000/auth/users/"
 
 const loginUsuario = async(data)=>{
   let {email, password} = data;
@@ -49,7 +48,7 @@ const registrarUsuario =async (objUsuario)=>{
         "Content-Type":"application/json"
       }
      
-      let {data} = await axios.post(URLUser,JSON.stringify(objUsuario),{headers})
+      let {data} = await axios.post(`${process.env.REACT_APP_API_URL}/auth/users/`,JSON.stringify(objUsuario),{headers})
      
       return data
   }

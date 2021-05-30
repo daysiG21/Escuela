@@ -1,8 +1,5 @@
 import axios from 'axios'
 
-//const URL ="https://601e0134be5f340017a1a122.mockapi.io/productos"
-const URL = "http://127.0.0.1:8000/curso"
-
 const listarCursos = async()=>{
   try{
     let {data} = await axios.get(`${process.env.REACT_APP_API_URL}/curso/`)
@@ -31,7 +28,7 @@ const registrarCurso =async (objProducto)=>{
         "Content-Type":"application/json"
       }
 
-      let {data} = await axios.post(URL,objProducto,{headers})
+      let {data} = await axios.post(`${process.env.REACT_APP_API_URL}/curso/`,objProducto,{headers})
       return data
   }
   catch(error){
@@ -45,7 +42,7 @@ const editarCurso =async (objProducto,id)=>{
         "Content-Type":"application/json"
       }
 
-      let {data} = await axios.put(`${URL}/${id}`,objProducto,{headers})
+      let {data} = await axios.put(`${process.env.REACT_APP_API_URL}/curso/${id}/`,objProducto,{headers})
       return data
 
   }
@@ -60,7 +57,7 @@ const registrarVenta =async (objVenta)=>{
         "Content-Type":"application/json"
       }
 
-      let {data} = await axios.post(URL,objVenta,{headers})
+      let {data} = await axios.post(`${process.env.REACT_APP_API_URL}/curso/`,objVenta,{headers})
       return data
   }
   catch(error){
@@ -89,7 +86,7 @@ const eliminarProducto = async (id) => {
     let headers = {
       "Content-Type":"application/json"
     }
-    let {data} = await axios.delete(`${URL}/${id}`, {headers})
+    let {data} = await axios.delete(`${process.env.REACT_APP_API_URL}/curso/${id}/`, {headers})
     return data
   } catch (error) {
     return error
